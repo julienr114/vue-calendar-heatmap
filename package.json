@@ -21,6 +21,12 @@
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^22.4.3",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
@@ -30,7 +36,7 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "standard"
     ],
     "rules": {},
     "parserOptions": {
