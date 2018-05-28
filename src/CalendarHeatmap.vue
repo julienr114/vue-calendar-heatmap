@@ -109,7 +109,7 @@ export default {
 
   mounted () {
     this.$nextTick(() => {
-      // console.log(this.heatmap.firstFullWeekOfMonths)
+      console.log(this.heatmap.activities)
     })
   }
 }

@@ -2,8 +2,7 @@
   #app
     calendar-heatmap(
       :end-date="today",
-      :values="values",
-      :max="40"
+      :values="values"
     )
 </template>
 
