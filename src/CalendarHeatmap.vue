@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import Heatmap from '@/Heatmap'
-import { DAYS_IN_WEEK, DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, SQUARE_SIZE } from '@/consts.js'
+import Heatmap from './Heatmap'
+import { DAYS_IN_WEEK, DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, SQUARE_SIZE } from './consts.js'
 
 export default {
   name: 'CalendarHeatmap',

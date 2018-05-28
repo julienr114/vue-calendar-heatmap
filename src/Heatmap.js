@@ -1,4 +1,4 @@
-import { DAYS_IN_ONE_YEAR, DAYS_IN_WEEK } from '@/consts'
+import { DAYS_IN_ONE_YEAR, DAYS_IN_WEEK } from './consts'
 
 export default class CalendarHeatmap {
   constructor (endDate, values, max) {

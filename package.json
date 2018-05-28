@@ -1,9 +1,8 @@
 {
   "name": "vue-calendar-heatmap",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "description": "A calendar heatmap Vuejs component built on SVG, inspired by github's contribution calendar graph",
   "author": "Julien Rabin <julien@wildcodeschool.fr>",
-  "main": "./src/main.js",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
