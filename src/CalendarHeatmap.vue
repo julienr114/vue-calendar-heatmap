@@ -12,6 +12,24 @@
         text.vch__day__label(x="0", :y="44") {{ lo.days[3] }}
         text.vch__day__label(x="0", :y="69") {{ lo.days[5] }}
 
+      g.vch__legend__wrapper(:transform="legendWrapperTransform")
+        text(
+          x="-25"
+          :y="SQUARE_SIZE + 1"
+        ) {{ lo.less }}
+        rect(
+          v-for="(color, index) in rangeColor",
+          :key="index",
+          :style="{ fill: color }",
+          :width="SQUARE_SIZE - SQUARE_BORDER_SIZE",
+          :height="SQUARE_SIZE - SQUARE_BORDER_SIZE",
+          :x="SQUARE_SIZE * index",
+          y="5"
+        )
+        text(
+          :x="SQUARE_SIZE * rangeColor.length + 1",
+          :y="SQUARE_SIZE + 1"
+          ) {{ lo.more }}
       g.vch__year__wrapper(:transform="yearWrapperTransform")
         g.vch__month__wrapper(
           v-for="(week, weekIndex) in heatmap.calendar",
@@ -22,8 +40,8 @@
             v-for="(day, dayIndex) in week",
             :key="dayIndex",
             :transform="getDayPosition(dayIndex)"
-            :width="SQUARE_SIZE - 1",
-            :height="SQUARE_SIZE - 1",
+            :width="SQUARE_SIZE - SQUARE_BORDER_SIZE",
+            :height="SQUARE_SIZE - SQUARE_BORDER_SIZE",
             :style="{ fill: rangeColor[day.colorIndex] }",
             v-tooltip="tooltipOptions(day)"
           )
@@ -82,7 +100,7 @@ export default {
       return this.DAYS_LABELS_WIDTH + (this.SQUARE_SIZE * this.heatmap.weekCount) + this.SQUARE_BORDER_SIZE
     },
     heigth () {
-      return this.WEEKS_LABELS_HEIGTH + (this.SQUARE_SIZE * DAYS_IN_WEEK) + this.SQUARE_BORDER_SIZE
+      return this.WEEKS_LABELS_HEIGTH + (this.SQUARE_SIZE * DAYS_IN_WEEK) + this.SQUARE_BORDER_SIZE + this.LEGEND_HEIGTH
     },
     viewbox () {
       return `0 0 ${this.width} ${this.heigth}`
@@ -93,6 +111,9 @@ export default {
     monthsLabelWrapperTransform () {
       return `translate(${this.DAYS_LABELS_WIDTH}, 0)`
     },
+    legendWrapperTransform () {
+      return `translate(${this.width - (this.SQUARE_SIZE * this.rangeColor.length) - 30}, ${this.heigth - this.LEGEND_HEIGTH})`
+    },
     yearWrapperTransform () {
       return `translate(${this.DAYS_LABELS_WIDTH}, ${this.WEEKS_LABELS_HEIGTH})`
     },
@@ -101,6 +122,7 @@ export default {
     SQUARE_SIZE () { return SQUARE_SIZE + this.SQUARE_BORDER_SIZE },
     WEEKS_LABELS_HEIGTH () { return SQUARE_SIZE + (SQUARE_SIZE / 2) },
     DAYS_LABELS_WIDTH () { return Math.ceil(SQUARE_SIZE * 2.5) },
+    LEGEND_HEIGTH () { return SQUARE_SIZE + (SQUARE_SIZE / 2) },
 
     lo () {
       if (this.locale) {
@@ -108,8 +130,8 @@ export default {
           months: this.locale.months || DEFAULT_LOCALE.months,
           days: this.locale.days || DEFAULT_LOCALE.days,
           on: this.locale.on || DEFAULT_LOCALE.on,
-          Less: this.locale.Less || DEFAULT_LOCALE.Less,
-          More: this.locale.More || DEFAULT_LOCALE.More
+          less: this.locale.less || DEFAULT_LOCALE.less,
+          more: this.locale.more || DEFAULT_LOCALE.more
         }
       }
       return DEFAULT_LOCALE
@@ -143,17 +165,15 @@ export default {
     font-size: 10px;
   }
 
-  svg.vch__wrapper .vch__days__labels__wrapper text.vch__day__label {
+  svg.vch__wrapper .vch__days__labels__wrapper text.vch__day__label,
+  svg.vch__wrapper .vch__legend__wrapper text {
     font-size: 9px;
   }
 
   svg.vch__wrapper .vch__months__labels__wrapper text.vch__month__label,
-  svg.vch__wrapper .vch__days__labels__wrapper text.vch__day__label {
+  svg.vch__wrapper .vch__days__labels__wrapper text.vch__day__label,
+  svg.vch__wrapper .vch__legend__wrapper text {
     fill: #767676;
-  }
-
-  svg.vch__wrapper rect.vch__day__square {
-    rx: 1;
   }
 
   svg.vch__wrapper rect.vch__day__square:hover {
