@@ -38,12 +38,14 @@
         )
           rect.vch__day__square(
             v-for="(day, dayIndex) in week",
+            v-if="day.date < now"
             :key="dayIndex",
             :transform="getDayPosition(dayIndex)"
             :width="SQUARE_SIZE - SQUARE_BORDER_SIZE",
             :height="SQUARE_SIZE - SQUARE_BORDER_SIZE",
             :style="{ fill: rangeColor[day.colorIndex] }",
-            v-tooltip="tooltipOptions(day)"
+            v-tooltip="tooltipOptions(day)",
+            @click="$emit('dayClick', day)"
           )
 </template>
 
@@ -86,6 +88,12 @@ export default {
     tooltipUnit: {
       type: String,
       default: DEFAULT_TOOLTIP_UNIT
+    }
+  },
+
+  data () {
+    return {
+      now: new Date()
     }
   },
 
@@ -140,10 +148,13 @@ export default {
 
   methods: {
     tooltipOptions (day) {
-      return {
-        content: `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
-        delay: { show: 150, hide: 50 }
+      if (this.tooltip) {
+        return {
+          content: `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
+          delay: { show: 150, hide: 50 }
+        }
       }
+      return false
     },
     getWeekPosition (index) {
       return `translate(${index * this.SQUARE_SIZE}, 0)`
