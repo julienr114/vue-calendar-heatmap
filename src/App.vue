@@ -1,9 +1,8 @@
-<template lang="pug">
-  #app
-    calendar-heatmap(
-      :end-date="today",
-      :values="values"
-    )
+<template>
+  <div id="app">
+    <calendar-heatmap :end-date="today" :values="values" :vertical="false" />
+    <calendar-heatmap :end-date="today" :values="values" :vertical="true" />
+  </div>
 </template>
 
 <script>
