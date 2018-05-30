@@ -1,6 +1,6 @@
 {
   "name": "vue-calendar-heatmap",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A calendar heatmap Vuejs component built on SVG, inspired by github's contribution calendar graph",
   "author": "Julien Rabin <julien@wildcodeschool.fr>",
   "scripts": {
@@ -10,8 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "v-tooltip": "^2.0.0-rc.32",
-    "vue": "^2.5.16"
+    "v-tooltip": "^2.0.0-rc.32"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.11",
@@ -29,6 +28,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
+    "vue": "^2.5.16",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
