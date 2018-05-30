@@ -57,8 +57,6 @@ import { DAYS_IN_WEEK, DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, DEFAULT_TOOLTIP_UNIT
 VTooltip.enabled = window.innerWidth > 768
 
 export default {
-  name: 'CalendarHeatmap',
-
   directives: {
     tooltip: VTooltip
   },
