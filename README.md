@@ -114,40 +114,40 @@ Vue.component('calendarHeatmap', CalendarHeatmap)
 ### **values** - `values` - _required_
 Array of objects with `date` and `count` keys. `date` values can be a date parseable string, a millisecond timestamp, or a Date object. `count` value should be a number.
 ``` html
- <vue-calendar-heatmap :values="[{ date: '2018-9-22', count: 6 }, ...]" ... />
+ <calendar-heatmap :values="[{ date: '2018-9-22', count: 6 }, ...]" ... />
 ```
 ### **endDate** - `end-date` - _required_
 Can be a date parseable string, a millisecond timestamp, or a Date object. The calendar will start automatically one year before this date.
 ``` html
- <vue-calendar-heatmap endDate="2018-9-22" ... />
+ <calendar-heatmap endDate="2018-9-22" ... />
 ```
 
 ### **colorRange** - `color-range` 
 A Array of 5 strings which represents the colors of the progression. The color at `colorRange[0]` will always represent the values for a `count: 0`. The others are automatically distributed over the maximum value of count, unless you specify `max` props. Default value is equal to the example.
 ``` html
- <vue-calendar-heatmap :range-color="['ebedf0', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" ... />
+ <calendar-heatmap :range-color="['ebedf0', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" ... />
 ```
 
 ### **max** - `max`
 Any number which should be the max color.
 ``` html
- <vue-calendar-heatmap :max="10" ... />
+ <calendar-heatmap :max="10" ... />
 ```
 ### **tooltip** - `tooltip`
 Boolean for enabble/disable tooltip on square hover. `true` by default.
 ``` html
- <vue-calendar-heatmap :tooltip="false" ... />
+ <calendar-heatmap :tooltip="false" ... />
 ```
 ### **tooltipUnit** - `tooltip-unit`
 String representing heatmap's unit of measure. His value is `"contributions"` by default. 
 ``` html
- <vue-calendar-heatmap tooltip-unit="stars" ... />
+ <calendar-heatmap tooltip-unit="stars" ... />
 ```
 
 ### **vertical** - `vertical`
 Boolean to switch to vertical mode. `false` by default.
 ``` html
- <vue-calendar-heatmap :vertical="true" ... />
+ <calendar-heatmap :vertical="true" ... />
 ```
 
 ## License
