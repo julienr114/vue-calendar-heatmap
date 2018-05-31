@@ -1,3 +1,4 @@
-import CalendarHeatmap from './src/CalendarHeatmap.vue'
+import './dist/vue-calendar-heatmap.css'
 
-export default CalendarHeatmap
+export { default } from './dist/vue-calendar-heatmap.common'
+export * from './dist/vue-calendar-heatmap.common'

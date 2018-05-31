@@ -1,56 +1,116 @@
 # vue-calendar-heatmap
 
-<p align="center">
-    <img src="https://i.imgur.com/ntYYTKX.png" alt="Screenshot"/>
-</p>
+![](https://i.imgur.com/ntYYTKX.png)
 
-<p align="center">
-    <a href="https://www.npmjs.com/package/vue-calendar-heatmap">
-        <img src="https://img.shields.io/npm/v/vue-calendar-heatmap.svg"/> 
-        <img src="https://img.shields.io/npm/dm/vue-calendar-heatmap.svg"/>
-    </a> 
-    <a href="https://vuejs.org/">
-        <img src="https://img.shields.io/badge/vue-2.x-brightgreen.svg"/>
-    </a>
-</p>
+[![npm](https://img.shields.io/npm/v/vue-calendar-heatmap.svg) ![npm](https://img.shields.io/npm/dm/vue-calendar-heatmap.svg)](https://www.npmjs.com/package/vue-calendar-heatmap)
+[![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
 A lightweight calendar heatmap Vuejs component built on SVG, inspired by github's contribution calendar graph. With vertical mode, tooltip powered by [v-tooltip](https://github.com/Akryum/v-tooltip).
 
-## Getting started
+## Table of contents
 
-1. Load Module
-``` shell
-npm insall --save vue-calendar-heatmap
-```
-2. Import in your vuejs application
-``` javascript
-import CalendarHeatmap from 'vue-calendar-heatmap'
+- [Installation](#installation)
+- [Usage](#usage)
 
-// in a parent component script
-export default {
-    components: {
-        CalendarHeatmap
-    },
-  
-    data () {
-        return {
-        today: new Date(),
-        values: [{ date: '2017-11-09', count: 1 }, { date: '2017-11-20', count: 1 }]
-    }
-  // ...
-}
+# Installation
+
 ```
-``` html
-<!-- in a parent component template -->
-<template>
-    <div id="parent">
-        <calendar-heatmap :end-date="today" :values="values" />
-    </div>
-</template>
+npm install --save vue-calendar-heatmap
 ```
 
+## Default import
+
+Install all the components:
+
+```javascript
+import Vue from 'vue'
+import VueCalendarHeatmap from 'vue-calendar-heatmap'
+
+Vue.use(VueCalendarHeatmap)
+```
+
+Use specific components:
+
+```javascript
+import Vue from 'vue'
+import { CalendarHeatmap } from 'vue-calendar-heatmap'
+
+Vue.component('calendarHeatmap', CalendarHeatmap)
+```
+
+**⚠️ A css file is included when importing the package. You may have to setup your bundler to embed the css in your page.**
+
+## Distribution import
+
+Install all the components:
+
+```javascript
+import 'vue-calendar-heatmap/dist/vue-calendar-heatmap.css'
+import VueCalendarHeatmap from 'vue-calendar-heatmap/dist/vue-calendar-heatmap.common'
+
+Vue.use(VueCalendarHeatmap)
+```
+
+Use specific components:
+
+```javascript
+import 'vue-calendar-heatmap/dist/vue-calendar-heatmap.css'
+import { CalendarHeatmap } from 'vue-calendar-heatmap/dist/vue-calendar-heatmap.common'
+
+Vue.component('calendarHeatmap', CalendarHeatmap)
+```
+
+**⚠️ You may have to setup your bundler to embed the css file in your page.**
+
+## Browser
+
+```html
+<link rel="stylesheet" href="vue-calendar-heatmap/dist/vue-calendar-heatmap.css"/>
+
+<script src="vue.js"></script>
+<script src="vue-calendar-heatmap/dist/vue-calendar-heatmap.browser.js"></script>
+```
+
+The plugin should be auto-installed. If not, you can install it manually with the instructions below.
+
+Install all the components:
+
+```javascript
+Vue.use(VueCalendarHeatmap)
+```
+
+Use specific components:
+
+```javascript
+Vue.component('calendarHeatmap', VueCalendarHeatmap.CalendarHeatmap)
+```
+
+## Source import
+
+Install all the components:
+
+```javascript
+import Vue from 'vue'
+import VueCalendarHeatmap from 'vue-calendar-heatmap/src'
+
+Vue.use(VueCalendarHeatmap)
+```
+
+Use specific components:
+
+```javascript
+import Vue from 'vue'
+import { CalendarHeatmap } from 'vue-calendar-heatmap/src'
+
+Vue.component('calendarHeatmap', CalendarHeatmap)
+```
+
+**⚠️ You need to configure your bundler to compile `.vue` files.** More info [in the official documentation](https://vuejs.org/v2/guide/single-file-components.html).
+
+# Usage
 
 ## Availables props
+
 ### **values** - `values` - _required_
 Array of objects with `date` and `count` keys. `date` values can be a date parseable string, a millisecond timestamp, or a Date object. `count` value should be a number.
 ``` html
@@ -89,3 +149,7 @@ Boolean to switch to vertical mode. `false` by default.
 ``` html
  <vue-calendar-heatmap :vertical="true" ... />
 ```
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)

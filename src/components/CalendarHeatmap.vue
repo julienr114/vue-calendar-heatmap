@@ -150,7 +150,6 @@ export default {
         horizontal: `translate(${this.width[this.position] - (this.SQUARE_SIZE * this.rangeColor.length) - 30}, ${this.heigth[this.position] - this.BOTTOM_SECTION_HEIGTH})`,
         vertical: `translate(${this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * DAYS_IN_WEEK)}, ${this.TOP_SECTION_HEIGTH})`
       }
-      
     },
     yearWrapperTransform () {
       return `translate(${this.LEFT_SECTION_WIDTH}, ${this.TOP_SECTION_HEIGTH})`
@@ -200,7 +199,7 @@ export default {
       return `translate(0, ${index * this.SQUARE_SIZE})`
     },
     getMonthLabelPostion (month) {
-      let position = { x: 0, y:0 }
+      let position = { x: 0, y: 0 }
       position.x = this.vertical ? 3 : this.SQUARE_SIZE * month.index
       position.y = this.vertical ? (this.SQUARE_SIZE * this.heatmap.weekCount) - (this.SQUARE_SIZE * (month.index)) - (this.SQUARE_SIZE / 4) : this.SQUARE_SIZE - this.SQUARE_BORDER_SIZE
       return position
