@@ -1,0 +1,55 @@
+config/
+node_modules/
+.git/
+
+.### OSX ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two 
+Icon
+# Thumbnails
+._*
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories
+node_modules
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn 
+.yarn-integrity
+yarn.lock
+
+yarn.lock
+CONTRIBUTING.md

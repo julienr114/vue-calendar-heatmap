@@ -54,7 +54,7 @@
             :height="SQUARE_SIZE - SQUARE_BORDER_SIZE",
             :style="{ fill: rangeColor[day.colorIndex] }",
             v-tooltip="tooltipOptions(day)",
-            @click="$emit('dayClick', day)"
+            @click="$emit('day-click', day)"
           )
 </template>
 

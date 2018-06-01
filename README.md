@@ -20,7 +20,7 @@ npm install --save vue-calendar-heatmap
 
 ## Default import
 
-Install all the components:
+Global Install:
 
 ```javascript
 import Vue from 'vue'
@@ -38,11 +38,26 @@ import { CalendarHeatmap } from 'vue-calendar-heatmap'
 Vue.component('calendarHeatmap', CalendarHeatmap)
 ```
 
+or in a parent components `.vue` file
+
+```html
+<script>
+  import { CalendarHeatmap } from 'vue-calendar-heatmap'
+
+  export default {
+    components: {
+      CalendarHeatmap
+    },
+    // ...
+  }
+</script>
+```
+
 **⚠️ A css file is included when importing the package. You may have to setup your bundler to embed the css in your page.**
 
 ## Distribution import
 
-Install all the components:
+Global Install:
 
 ```javascript
 import 'vue-calendar-heatmap/dist/vue-calendar-heatmap.css'
@@ -84,28 +99,6 @@ Use specific components:
 ```javascript
 Vue.component('calendarHeatmap', VueCalendarHeatmap.CalendarHeatmap)
 ```
-
-## Source import
-
-Install all the components:
-
-```javascript
-import Vue from 'vue'
-import VueCalendarHeatmap from 'vue-calendar-heatmap/src'
-
-Vue.use(VueCalendarHeatmap)
-```
-
-Use specific components:
-
-```javascript
-import Vue from 'vue'
-import { CalendarHeatmap } from 'vue-calendar-heatmap/src'
-
-Vue.component('calendarHeatmap', CalendarHeatmap)
-```
-
-**⚠️ You need to configure your bundler to compile `.vue` files.** More info [in the official documentation](https://vuejs.org/v2/guide/single-file-components.html).
 
 # Usage
 
