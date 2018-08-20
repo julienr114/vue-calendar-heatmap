@@ -116,9 +116,16 @@ Can be a date parseable string, a millisecond timestamp, or a Date object. The c
 ```
 
 ### **colorRange** - `color-range` 
-A Array of 5 strings which represents the colors of the progression. The color at `colorRange[0]` will always represent the values for a `count: 0`. The others are automatically distributed over the maximum value of count, unless you specify `max` props. Default value is equal to the example.
+A Array of 6 strings which represents the colors of the progression. 
+
+- The color at `colorRange[0]` will always represent the values for a `count: null`
+- The color at `colorRange[1]` will always represent the values for a `count: 0`
+- The others are automatically distributed over the maximum value of count, unless you specify `max` props. 
+
+Default value is equal to the example.
+
 ``` html
- <calendar-heatmap :range-color="['ebedf0', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" ... />
+ <calendar-heatmap :range-color="['ebedf0', 'dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" ... />
 ```
 
 ### **max** - `max`
@@ -126,6 +133,13 @@ Any number which should be the max color.
 ``` html
  <calendar-heatmap :max="10" ... />
 ```
+
+### **noDataText** - `no-data-text`
+Tooltip text to display on days without data. `null` by default (shows no tooltip at all).
+``` html
+ <calendar-heatmap :no-data-text="no data for this day" ... />
+```
+
 ### **tooltip** - `tooltip`
 Boolean for enabble/disable tooltip on square hover. `true` by default.
 ``` html
