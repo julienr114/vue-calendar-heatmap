@@ -112,7 +112,7 @@ Array of objects with `date` and `count` keys. `date` values can be a date parse
 ### **endDate** - `end-date` - _required_
 Can be a date parseable string, a millisecond timestamp, or a Date object. The calendar will start automatically one year before this date.
 ``` html
- <calendar-heatmap endDate="2018-9-22" ... />
+ <calendar-heatmap :end-date="2018-9-22" ... />
 ```
 
 ### **colorRange** - `color-range` 
