@@ -115,12 +115,12 @@ Can be a date parseable string, a millisecond timestamp, or a Date object. The c
  <calendar-heatmap :end-date="2018-9-22" ... />
 ```
 
-### **colorRange** - `color-range` 
-A Array of 6 strings which represents the colors of the progression. 
+### **colorRange** - `color-range`
+Array of 6 strings which represents the colors of the progression.
 
 - The color at `colorRange[0]` will always represent the values for a `count: null`
 - The color at `colorRange[1]` will always represent the values for a `count: 0`
-- The others are automatically distributed over the maximum value of count, unless you specify `max` props. 
+- The others are automatically distributed over the maximum value of count, unless you specify `max` props.
 
 Default value is equal to the example.
 
@@ -141,12 +141,12 @@ Tooltip text to display on days without data. `null` by default (shows no toolti
 ```
 
 ### **tooltip** - `tooltip`
-Boolean for enabble/disable tooltip on square hover. `true` by default.
+Boolean for enable/disable tooltip on square hover. `true` by default.
 ``` html
  <calendar-heatmap :tooltip="false" ... />
 ```
 ### **tooltipUnit** - `tooltip-unit`
-String representing heatmap's unit of measure. His value is `"contributions"` by default. 
+String representing heatmap's unit of measure. Value is `"contributions"` by default.
 ``` html
  <calendar-heatmap tooltip-unit="stars" ... />
 ```
