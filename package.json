@@ -25,6 +25,7 @@
     "build:common": "cross-env NODE_ENV=production webpack --config config/webpack.config.common.js --progress --hide-modules",
     "prepublish": "npm run build"
   },
+  "types": "./src/index.d.ts",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.1.1",
