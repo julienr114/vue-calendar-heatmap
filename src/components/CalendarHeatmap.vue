@@ -96,6 +96,9 @@ export default {
       type: String,
       default: DEFAULT_TOOLTIP_UNIT
     },
+    tooltipFormatter: {
+      type: Function
+    },
     vertical: {
       type: Boolean,
       default: false
@@ -184,6 +187,12 @@ export default {
     tooltipOptions (day) {
       if (this.tooltip) {
         if (day.count != null) {
+          if (this.tooltipFormatter) {
+            return {
+              content: `<b>${this.tooltipFormatter(day.count)} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
+              delay: { show: 150, hide: 50 }
+            }
+          }
           return {
             content: `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
             delay: { show: 150, hide: 50 }
