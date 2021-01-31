@@ -115,11 +115,11 @@ Can be a date parseable string, a millisecond timestamp, or a Date object. The c
  <calendar-heatmap :end-date="2018-9-22" ... />
 ```
 
-### **colorRange** - `color-range`
+### **rangeColor** - `range-color`
 Array of 6 strings which represents the colors of the progression.
 
-- The color at `colorRange[0]` will always represent the values for a `count: null`
-- The color at `colorRange[1]` will always represent the values for a `count: 0`
+- The color at `rangeColor[0]` will always represent the values for a `count: null`
+- The color at `rangeColor[1]` will always represent the values for a `count: 0`
 - The others are automatically distributed over the maximum value of count, unless you specify `max` props.
 
 Default value is equal to the example.
