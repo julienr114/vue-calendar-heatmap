@@ -160,7 +160,7 @@ Boolean to switch to vertical mode. `false` by default.
 ### **day-click** - `day-click`
 Function called when a rect is clicked.
 ``` html
- <calendar-heatmap :@day-click="handleDayClick" ... />
+ <calendar-heatmap @day-click="handleDayClick" ... />
 ```
 
 The argument type of the listener is as follows:
