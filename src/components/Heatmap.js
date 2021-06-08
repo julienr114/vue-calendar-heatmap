@@ -11,8 +11,9 @@ export default class CalendarHeatmap {
   get activities () {
     return this.values.reduce((newValues, day) => {
       newValues[this._keyDayParser(day.date)] = {
+        workoutId: day.workoutId,
         count: day.count,
-        colorIndex: this.getColorIndex(day.count)
+        colorIndex: this.getColorIndex(day.count),
       }
       return newValues
     }, {})
@@ -23,20 +24,26 @@ export default class CalendarHeatmap {
   }
 
   get calendar () {
-    let date = this._shiftDate(this.startDate, -this.getCountEmptyDaysAtStart())
-    return Array.from({ length: this.weekCount },
-      () => Array.from({ length: DAYS_IN_WEEK },
-        () => {
-          let dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
-          let dayValues = this.activities[this._keyDayParser(dDate)]
-          date.setDate(date.getDate() + 1)
-          return {
-            date: dDate,
-            count: dayValues ? dayValues.count : null,
-            colorIndex: dayValues ? dayValues.colorIndex : 0
-          }
+    const date = this._shiftDate(
+      this.startDate,
+      -this.getCountEmptyDaysAtStart()
+    )
+    return Array.from({ length: this.weekCount }, () =>
+      Array.from({ length: DAYS_IN_WEEK }, () => {
+        const dDate = new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate()
+        )
+        const dayValues = this.activities[this._keyDayParser(dDate)]
+        date.setDate(date.getDate() + 1)
+        return {
+          date: dDate,
+          count: dayValues ? dayValues.count : 0,
+          colorIndex: dayValues ? dayValues.colorIndex : 0,
+          workoutId: dayValues ? dayValues.workoutId : 0,
         }
-      )
+      })
     )
   }
 
