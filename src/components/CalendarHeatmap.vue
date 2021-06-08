@@ -11,15 +11,15 @@
         text.vch__day__label(
           :x="vertical ? SQUARE_SIZE * 1 : 0",
           :y="vertical ? SQUARE_SIZE - SQUARE_BORDER_SIZE : 20"
-        ) {{ lo.days[1] }}
+        ) {{ lo.days[1 + weekstart] }}
         text.vch__day__label(
           :x="vertical ? SQUARE_SIZE * 3 : 0",
           :y="vertical ? SQUARE_SIZE - SQUARE_BORDER_SIZE : 44"
-        ) {{ lo.days[3] }}
+        ) {{ lo.days[3 + weekstart] }}
         text.vch__day__label(
           :x="vertical ? SQUARE_SIZE * 5 : 0",
           :y="vertical ? SQUARE_SIZE - SQUARE_BORDER_SIZE : 69"
-        ) {{ lo.days[5] }}
+        ) {{ lo.days[5 + weekstart] }}
 
       g.vch__legend__wrapper(:transform="legendWrapperTransform[position]")
         text(
@@ -108,7 +108,8 @@ export default {
 
   data () {
     return {
-      now: new Date()
+      now: new Date(),
+      weekstart: 1
     }
   },
 
@@ -120,7 +121,7 @@ export default {
       return `translate(${this.tooltipX}, ${this.tooltipY})`
     },
     heatmap () {
-      return new Heatmap(this.endDate, this.values, this.max)
+      return new Heatmap(this.endDate, this.values, this.max, this.weekstart)
     },
     width () {
       return {
