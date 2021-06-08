@@ -13,7 +13,7 @@ export default class CalendarHeatmap {
       newValues[this._keyDayParser(day.date)] = {
         workoutId: day.workoutId,
         count: day.count,
-        colorIndex: this.getColorIndex(day.count),
+        colorIndex: this.getColorIndex(day.count)
       }
       return newValues
     }, {})
@@ -41,7 +41,7 @@ export default class CalendarHeatmap {
           date: dDate,
           count: dayValues ? dayValues.count : 0,
           colorIndex: dayValues ? dayValues.colorIndex : 0,
-          workoutId: dayValues ? dayValues.workoutId : 0,
+          workoutId: dayValues ? dayValues.workoutId : 0
         }
       })
     )
