@@ -52,7 +52,7 @@
             :transform="getDayPosition(dayIndex)"
             :width="SQUARE_SIZE - SQUARE_BORDER_SIZE",
             :height="SQUARE_SIZE - SQUARE_BORDER_SIZE",
-            :style="{ fill: rangeColor[day.colorIndex] }",
+            :style="{ fill: getFillColor(day.colorIndex) }",
             v-tooltip="tooltipOptions(day)",
             @click="$emit('day-click', day)"
           )
@@ -203,6 +203,10 @@ export default {
         return `translate(0, ${(this.SQUARE_SIZE * this.heatmap.weekCount) - ((index + 1) * this.SQUARE_SIZE)})`
       }
       return `translate(${index * this.SQUARE_SIZE}, 0)`
+    },
+    getFillColor (index) {
+      if (index === -1) return '#ffe0e0'
+      return this.rangeColor[index]
     },
     getDayPosition (index) {
       if (this.vertical) {

@@ -38,10 +38,11 @@ export default class CalendarHeatmap {
         )
         const dayValues = this.activities[this._keyDayParser(dDate)]
         date.setDate(date.getDate() + 1)
+        const weekEnd = date.getDay() === 1 || date.getDay() === 0 ? -1 : 0
         return {
           date: dDate,
           count: dayValues ? dayValues.count : 0,
-          colorIndex: dayValues ? dayValues.colorIndex : 0,
+          colorIndex: dayValues ? dayValues.colorIndex : weekEnd || 0,
           workoutId: dayValues ? dayValues.workoutId : 0
         }
       })
