@@ -3,7 +3,8 @@ import { DAYS_IN_ONE_YEAR, DAYS_IN_WEEK } from './consts'
 export default class CalendarHeatmap {
   constructor (endDate, values, max, weekstart) {
     this.endDate = this._parseDate(endDate)
-    this.max = max || Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
+    this.max = Math.max(...values.map(day => day.count))
+    this.min = Math.min(...values.map(day => day.count))
     this.startDate = this._shiftDate(endDate, -DAYS_IN_ONE_YEAR)
     this.values = values
     this.weekstart = weekstart
@@ -63,15 +64,8 @@ export default class CalendarHeatmap {
   }
 
   getColorIndex (value) {
-    if (value == null || value === undefined) {
-      return 0
-    } else if (value <= 0) {
-      return 1
-    } else if (value >= this.max) {
-      return 5
-    } else {
-      return (Math.ceil(((value * 100) / this.max) * (0.03))) + 1
-    }
+    let x = (value - this.min) / (this.max - this.min) * 4
+    return Math.ceil(x) + 2
   }
 
   getCountEmptyDaysAtStart () {
