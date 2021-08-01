@@ -24,4 +24,4 @@ export default /*#__PURE__*/((): InstallableComponent => {
 // also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
 // export const RollupDemoDirective = directive;
 export * from './Heatmap';
-export * from './CalendarHeatmap.vue';
+export { component as CalendarHeatmap };
