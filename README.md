@@ -10,9 +10,9 @@ This is primary a Typescript rewrite of [vue-calendar-heatmap](https://github.co
 
 ![](https://i.imgur.com/ntYYTKX.png)
 
-[![npm](https://img.shields.io/npm/v/vue3-calendar-heatmap.svg) 
-![npm](https://img.shields.io/npm/dm/vue3-calendar-heatmap.svg)](https://www.npmjs.com/package/vue3-calendar-heatmap)
-[![vue2](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://vuejs.org/)
+![npm](https://img.shields.io/npm/v/vue3-calendar-heatmap.svg?style=flat-square)
+[![TypeScript](https://img.shields.io/badge/-Typescript-informational?style=flat-square)](https://github.com/ellerbrock/typescript-badges/)
+[![vue2](https://img.shields.io/badge/vue-3.x-brightgreen.svg?style=flat-square)](https://vuejs.org/)
 
 A lightweight calendar heatmap Vuejs component built on SVG, inspired by github's contribution calendar graph. With vertical mode, tooltip powered
 by [v-tooltip](https://github.com/Akryum/v-tooltip).
