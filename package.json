@@ -1,16 +1,36 @@
 {
   "name": "vue3-calendar-heatmap",
   "version": "1.0.0",
-  "description": "A lightweight calendar heatmap Vue 3 component built on SVG, inspired by github's contribution calendar graph",
-  "main": "dist/vue3-calendar-heatmap.ssr.js",
-  "browser": "dist/vue3-calendar-heatmap.esm.js",
-  "module": "dist/vue3-calendar-heatmap.esm.js",
-  "unpkg": "dist/vue3-calendar-heatmap.min.js",
+  "description": "A lightweight calendar heatmap Vue 3 component built on SVG, inspired by julienr114's vue-calendar-heatmap ans github's contribution calendar graph",
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuejs",
+    "vue3js",
+    "vue-component",
+    "vue3-component",
+    "calendar",
+    "heatmap"
+  ],
+  "main": "dist/calendar-heatmap.ssr.js",
+  "browser": "dist/calendar-heatmap.esm.js",
+  "module": "dist/calendar-heatmap.esm.js",
+  "unpkg": "dist/calendar-heatmap.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
     "dist/*",
     "src/**/*.vue"
   ],
+  "author": {
+    "name": "Volker Nauruhn",
+    "email": "mensch.meier@live.de",
+    "url": "razorness.de"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/razorness/calendar-heatmap.git"
+  },
   "sideEffects": false,
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.ts",
