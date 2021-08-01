@@ -76,7 +76,7 @@
 
 <script lang="ts">
 	import { defineComponent, onBeforeUnmount, onMounted, PropType, ref, toRefs, watch } from 'vue';
-	import { CalendarHeatmap, CalendarItem, Locale, Month, Position, Value } from '@/Heatmap';
+	import { Heatmap, CalendarItem, Locale, Month, Position, Value } from '@/Heatmap';
 	import tippy, { createSingleton, CreateSingletonInstance, Instance } from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
 	import 'tippy.js/dist/svg-arrow.css';
@@ -94,7 +94,7 @@
 			},
 			rangeColor      : {
 				type   : Array as PropType<string[]>,
-				default: CalendarHeatmap.DEFAULT_RANGE_COLOR
+				default: Heatmap.DEFAULT_RANGE_COLOR
 			},
 			values          : {
 				type    : Array as PropType<Value[]>,
@@ -109,7 +109,7 @@
 			},
 			tooltipUnit     : {
 				type   : String,
-				default: CalendarHeatmap.DEFAULT_TOOLTIP_UNIT
+				default: Heatmap.DEFAULT_TOOLTIP_UNIT
 			},
 			tooltipFormatter: {
 				type: Function as PropType<(day: CalendarItem) => string>
@@ -131,12 +131,12 @@
 			width(): Transform<number> {
 				return {
 					[ Position.HORIZONTAL ]: this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * this.heatmap!.weekCount) + this.SQUARE_BORDER_SIZE,
-					[ Position.VERTICAL ]  : this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * CalendarHeatmap.DAYS_IN_WEEK) + this.RIGHT_SECTION_WIDTH
+					[ Position.VERTICAL ]  : this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * Heatmap.DAYS_IN_WEEK) + this.RIGHT_SECTION_WIDTH
 				};
 			},
 			heigth(): Transform<number> {
 				return {
-					[ Position.HORIZONTAL ]: this.TOP_SECTION_HEIGTH + (this.SQUARE_SIZE * CalendarHeatmap.DAYS_IN_WEEK) + this.SQUARE_BORDER_SIZE + this.BOTTOM_SECTION_HEIGTH,
+					[ Position.HORIZONTAL ]: this.TOP_SECTION_HEIGTH + (this.SQUARE_SIZE * Heatmap.DAYS_IN_WEEK) + this.SQUARE_BORDER_SIZE + this.BOTTOM_SECTION_HEIGTH,
 					[ Position.VERTICAL ]  : this.TOP_SECTION_HEIGTH + (this.SQUARE_SIZE * this.heatmap!.weekCount) + this.SQUARE_BORDER_SIZE
 				};
 			},
@@ -158,7 +158,7 @@
 			legendWrapperTransform(): Transform {
 				return {
 					[ Position.HORIZONTAL ]: `translate(${this.width[ this.position ] - (this.SQUARE_SIZE * this.rangeColor.length) - 30}, ${this.heigth[ this.position ] - this.BOTTOM_SECTION_HEIGTH})`,
-					[ Position.VERTICAL ]  : `translate(${this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * CalendarHeatmap.DAYS_IN_WEEK)}, ${this.TOP_SECTION_HEIGTH})`
+					[ Position.VERTICAL ]  : `translate(${this.LEFT_SECTION_WIDTH + (this.SQUARE_SIZE * Heatmap.DAYS_IN_WEEK)}, ${this.TOP_SECTION_HEIGTH})`
 				};
 			},
 			yearWrapperTransform(): string {
@@ -166,34 +166,34 @@
 			},
 
 			SQUARE_BORDER_SIZE(): number {
-				return CalendarHeatmap.SQUARE_SIZE / 5;
+				return Heatmap.SQUARE_SIZE / 5;
 			},
 			SQUARE_SIZE(): number {
-				return CalendarHeatmap.SQUARE_SIZE + this.SQUARE_BORDER_SIZE;
+				return Heatmap.SQUARE_SIZE + this.SQUARE_BORDER_SIZE;
 			},
 			TOP_SECTION_HEIGTH(): number {
-				return CalendarHeatmap.SQUARE_SIZE + (CalendarHeatmap.SQUARE_SIZE / 2);
+				return Heatmap.SQUARE_SIZE + (Heatmap.SQUARE_SIZE / 2);
 			},
 			RIGHT_SECTION_WIDTH(): number {
 				return this.SQUARE_SIZE * 3;
 			},
 			BOTTOM_SECTION_HEIGTH(): number {
-				return CalendarHeatmap.SQUARE_SIZE + (CalendarHeatmap.SQUARE_SIZE / 2);
+				return Heatmap.SQUARE_SIZE + (Heatmap.SQUARE_SIZE / 2);
 			},
 			LEFT_SECTION_WIDTH(): number {
-				return Math.ceil(CalendarHeatmap.SQUARE_SIZE * 2.5);
+				return Math.ceil(Heatmap.SQUARE_SIZE * 2.5);
 			},
 			lo(): Locale {
 				if (this.locale) {
 					return {
-						months: this.locale.months || CalendarHeatmap.DEFAULT_LOCALE.months,
-						days  : this.locale.days || CalendarHeatmap.DEFAULT_LOCALE.days,
-						on    : this.locale.on || CalendarHeatmap.DEFAULT_LOCALE.on,
-						less  : this.locale.less || CalendarHeatmap.DEFAULT_LOCALE.less,
-						more  : this.locale.more || CalendarHeatmap.DEFAULT_LOCALE.more
+						months: this.locale.months || Heatmap.DEFAULT_LOCALE.months,
+						days  : this.locale.days || Heatmap.DEFAULT_LOCALE.days,
+						on    : this.locale.on || Heatmap.DEFAULT_LOCALE.on,
+						less  : this.locale.less || Heatmap.DEFAULT_LOCALE.less,
+						more  : this.locale.more || Heatmap.DEFAULT_LOCALE.more
 					};
 				}
-				return CalendarHeatmap.DEFAULT_LOCALE;
+				return Heatmap.DEFAULT_LOCALE;
 			}
 		},
 		methods : {
@@ -235,7 +235,7 @@
 
 			const svg     = ref<null | SVGElement>(null),
 				  now     = ref(new Date()),
-				  heatmap = ref(new CalendarHeatmap(props.endDate as Date, props.values, props.max));
+				  heatmap = ref(new Heatmap(props.endDate as Date, props.values, props.max));
 
 			function initTippy() {
 				tippyInstances = tippy(Array.from(svg.value!.querySelectorAll('.vch__day__square[data-tippy-content]')));
@@ -250,7 +250,7 @@
 			}
 
 			watch(toRefs(props).values, () => {
-				heatmap.value = new CalendarHeatmap(props.endDate as Date, props.values, props.max);
+				heatmap.value = new Heatmap(props.endDate as Date, props.values, props.max);
 				tippyInstances?.map(i => i.destroy());
 				initTippy();
 			});

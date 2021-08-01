@@ -36,7 +36,7 @@ export enum Position {
 	VERTICAL   = 'vertical'
 }
 
-export class CalendarHeatmap {
+export class Heatmap {
 
 	static readonly DEFAULT_RANGE_COLOR    = [ '#ebedf0', '#dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e' ];
 	static readonly DEFAULT_LOCALE: Locale = {
@@ -63,7 +63,7 @@ export class CalendarHeatmap {
 	constructor(endDate: Date | string, values: Value[], max?: number) {
 		this.endDate   = this.parseDate(endDate);
 		this.max       = max || Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4);
-		this.startDate = this.shiftDate(endDate, -CalendarHeatmap.DAYS_IN_ONE_YEAR);
+		this.startDate = this.shiftDate(endDate, -Heatmap.DAYS_IN_ONE_YEAR);
 		this._values   = values;
 	}
 
@@ -93,7 +93,7 @@ export class CalendarHeatmap {
 	}
 
 	get weekCount() {
-		return this.getDaysCount() / CalendarHeatmap.DAYS_IN_WEEK;
+		return this.getDaysCount() / Heatmap.DAYS_IN_WEEK;
 	}
 
 	get calendar() {
@@ -102,8 +102,8 @@ export class CalendarHeatmap {
 			date           = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 			this._calendar = new Array(this.weekCount);
 			for (let i = 0, len = this._calendar.length; i < len; i++) {
-				this._calendar[ i ] = new Array(CalendarHeatmap.DAYS_IN_WEEK);
-				for (let j = 0; j < CalendarHeatmap.DAYS_IN_WEEK; j++) {
+				this._calendar[ i ] = new Array(Heatmap.DAYS_IN_WEEK);
+				for (let j = 0; j < Heatmap.DAYS_IN_WEEK; j++) {
 					const dayValues          = this.activities.get(this.keyDayParser(date));
 					this._calendar[ i ][ j ] = {
 						date      : new Date(date.valueOf()),
@@ -149,11 +149,11 @@ export class CalendarHeatmap {
 	}
 
 	getCountEmptyDaysAtEnd() {
-		return (CalendarHeatmap.DAYS_IN_WEEK - 1) - this.endDate.getDay();
+		return (Heatmap.DAYS_IN_WEEK - 1) - this.endDate.getDay();
 	}
 
 	getDaysCount() {
-		return CalendarHeatmap.DAYS_IN_ONE_YEAR + 1 + this.getCountEmptyDaysAtStart() + this.getCountEmptyDaysAtEnd();
+		return Heatmap.DAYS_IN_ONE_YEAR + 1 + this.getCountEmptyDaysAtStart() + this.getCountEmptyDaysAtEnd();
 	}
 
 	private shiftDate(date: Date | string, numDays: number) {
