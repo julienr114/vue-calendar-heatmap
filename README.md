@@ -15,7 +15,7 @@ This is primary a Typescript rewrite of [vue-calendar-heatmap](https://github.co
 [![vue2](https://img.shields.io/badge/vue-3.x-brightgreen.svg?style=flat-square)](https://vuejs.org/)
 
 A lightweight calendar heatmap Vuejs component built on SVG, inspired by github's contribution calendar graph. With vertical mode, tooltip powered
-by [v-tooltip](https://github.com/Akryum/v-tooltip).
+by [Tippy.js](https://github.com/atomiks/tippyjs).
 
 ## Table of contents
 
