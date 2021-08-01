@@ -92,7 +92,7 @@ if (!argv.format || argv.format === 'es') {
     input: 'src/entry.esm.ts',
     external,
     output: {
-      file: 'dist/vue3-calendar-heatmap.esm.js',
+      file: 'dist/calendar-heatmap.esm.js',
       format: 'esm',
       exports: 'named',
     },
@@ -131,9 +131,9 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue3-calendar-heatmap.ssr.js',
+      file: 'dist/calendar-heatmap.ssr.js',
       format: 'cjs',
-      name: 'Vue3CalendarHeatmap',
+      name: 'CalendarHeatmap',
       exports: 'auto',
       globals,
     },
@@ -154,9 +154,9 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue3-calendar-heatmap.min.js',
+      file: 'dist/calendar-heatmap.min.js',
       format: 'iife',
-      name: 'Vue3CalendarHeatmap',
+      name: 'CalendarHeatmap',
       exports: 'auto',
       globals,
     },
