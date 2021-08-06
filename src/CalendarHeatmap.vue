@@ -75,8 +75,8 @@
 </template>
 
 <script lang="ts">
-	import { defineComponent, onBeforeUnmount, onMounted, PropType, ref, toRefs, watch } from 'vue';
-	import { CalendarItem, Heatmap, Locale, Month, Position, Value } from '@/Heatmap';
+	import { defineComponent, nextTick, onBeforeUnmount, onMounted, PropType, ref, toRefs, watch } from 'vue';
+	import { CalendarItem, Heatmap, Locale, Month, Position, TooltipFormatter, Value } from '@/Heatmap';
 	import tippy, { createSingleton, CreateSingletonInstance, Instance } from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
 	import 'tippy.js/dist/svg-arrow.css';
@@ -112,7 +112,7 @@
 				default: Heatmap.DEFAULT_TOOLTIP_UNIT
 			},
 			tooltipFormatter: {
-				type: Function as PropType<(day: CalendarItem) => string>
+				type: Function as PropType<TooltipFormatter>
 			},
 			vertical        : {
 				type   : Boolean,
@@ -201,7 +201,7 @@
 				if (this.tooltip) {
 					if (day.count !== undefined) {
 						if (this.tooltipFormatter) {
-							return this.tooltipFormatter(day);
+							return this.tooltipFormatter(day, this.tooltipUnit);
 						}
 						return `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[ day.date.getMonth() ]} ${day.date.getDate()}, ${day.date.getFullYear()}`;
 					} else if (this.noDataText) {
@@ -256,7 +256,7 @@
 				() => {
 					heatmap.value = new Heatmap(props.endDate as Date, props.values, props.max);
 					tippyInstances?.map(i => i.destroy());
-					initTippy();
+					nextTick(initTippy);
 				}
 			);
 

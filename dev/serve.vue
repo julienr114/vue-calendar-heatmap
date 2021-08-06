@@ -1,5 +1,16 @@
 <template>
 	<div>
+		<h4>Unit Select</h4>
+		<div>
+			<input type="radio" id="one" value="Dings" v-model="picked"/>
+			<label for="one">Dings</label>
+			<br/>
+			<input type="radio" id="two" value="Da" v-model="picked"/>
+			<label for="two">Da</label>
+			<br/>
+			<span>Current Unit: {{ picked }}</span>
+		</div>
+		<br>
 		<h4>None</h4>
 		<calendar-heatmap :values="[]" :end-date="endDate" style="max-width: 675px"/>
 		<br>
@@ -15,14 +26,17 @@
 			more  : 'Mehr'
 		}"/>
 		<br>
+		<h4>Tooltip Unit</h4>
+		<calendar-heatmap :values="values" :end-date="endDate" style="max-width: 675px" :tooltip-unit="picked"/>
+		<br>
 		<h4>TooltipFormatter</h4>
 		<calendar-heatmap
 			:values="values"
 			:end-date="endDate"
 			style="max-width: 675px"
-			:tooltip-formatter="(c) => c.count ? c.count / 3600 / 1000 : 'NÖX'"
+			:tooltip-formatter="(c, u) => c.count ? (c.count / 3600 / 1000) + ' ' + u: 'NÖX'"
 			no-data-text="NIX"
-			tooltip-unit="Dings"
+			:tooltip-unit="picked"
 		/>
 	</div>
 </template>
@@ -42,7 +56,8 @@
 		data() {
 			return {
 				values : data,
-				endDate: new Date('2021-08-01')
+				endDate: new Date('2021-08-01'),
+				picked : 'Dings'
 			};
 		}
 	});
