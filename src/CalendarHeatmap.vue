@@ -76,7 +76,7 @@
 
 <script lang="ts">
 	import { defineComponent, onBeforeUnmount, onMounted, PropType, ref, toRefs, watch } from 'vue';
-	import { Heatmap, CalendarItem, Locale, Month, Position, Value } from '@/Heatmap';
+	import { CalendarItem, Heatmap, Locale, Month, Position, Value } from '@/Heatmap';
 	import tippy, { createSingleton, CreateSingletonInstance, Instance } from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
 	import 'tippy.js/dist/svg-arrow.css';
@@ -249,11 +249,16 @@
 				}
 			}
 
-			watch(toRefs(props).values, () => {
-				heatmap.value = new Heatmap(props.endDate as Date, props.values, props.max);
-				tippyInstances?.map(i => i.destroy());
-				initTippy();
-			});
+
+			const { values, tooltipUnit, tooltipFormatter, noDataText, max, rangeColor } = toRefs(props);
+			watch(
+				[ values, tooltipUnit, tooltipFormatter, noDataText, max, rangeColor ],
+				() => {
+					heatmap.value = new Heatmap(props.endDate as Date, props.values, props.max);
+					tippyInstances?.map(i => i.destroy());
+					initTippy();
+				}
+			);
 
 			onMounted(initTippy);
 			onBeforeUnmount(() => {
