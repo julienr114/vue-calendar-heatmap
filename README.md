@@ -33,19 +33,17 @@ npm install --save vue3-calendar-heatmap
 Global Install:
 
 ```javascript
-import Vue from 'vue'
 import VueCalendarHeatmap from 'vue3-calendar-heatmap'
 
-Vue.use(VueCalendarHeatmap)
+app.use(VueCalendarHeatmap)
 ```
 
 Use specific components:
 
 ```javascript
-import Vue from 'vue'
 import { CalendarHeatmap } from 'vue3-calendar-heatmap'
 
-Vue.component('calendarHeatmap', CalendarHeatmap)
+app.component('CalendarHeatmap', CalendarHeatmap)
 ```
 
 or in a parent components `.vue` file
@@ -64,26 +62,6 @@ or in a parent components `.vue` file
 ```
 
 **⚠️ A css file is included when importing the package. You may have to setup your bundler to embed the css in your page.**
-
-## Distribution import
-
-Global Install:
-
-```javascript
-import 'vue3-calendar-heatmap/dist/vue3-calendar-heatmap.css'
-import VueCalendarHeatmap from 'vue3-calendar-heatmap/dist/vue3-calendar-heatmap.common'
-
-Vue.use(VueCalendarHeatmap)
-```
-
-Use specific components:
-
-```javascript
-import 'vue3-calendar-heatmap/dist/vue3-calendar-heatmap.css'
-import { CalendarHeatmap } from 'vue3-calendar-heatmap/dist/vue3-calendar-heatmap.common'
-
-Vue.component('calendarHeatmap', CalendarHeatmap)
-```
 
 # Usage
 
