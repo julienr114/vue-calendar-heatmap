@@ -157,6 +157,22 @@ Boolean to switch to vertical mode. `false` by default.
  <calendar-heatmap :vertical="true" ... />
 ```
 
+### **day-click** - `day-click`
+Function called when a rect is clicked.
+``` html
+ <calendar-heatmap @day-click="handleDayClick" ... />
+```
+
+The argument type of the listener is as follows:
+
+```typescript
+{
+  date: Date
+  count: number
+  colorIndex: number
+}
+```
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
