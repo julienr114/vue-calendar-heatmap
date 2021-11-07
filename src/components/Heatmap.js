@@ -1,11 +1,12 @@
 import { DAYS_IN_ONE_YEAR, DAYS_IN_WEEK } from './consts'
 
 export default class CalendarHeatmap {
-  constructor (endDate, values, max) {
+  constructor (endDate, values, max, weekstart) {
     this.endDate = this._parseDate(endDate)
     this.max = max || Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     this.startDate = this._shiftDate(endDate, -DAYS_IN_ONE_YEAR)
     this.values = values
+    this.weekstart = weekstart
   }
 
   get activities () {
@@ -23,7 +24,7 @@ export default class CalendarHeatmap {
   }
 
   get calendar () {
-    let date = this._shiftDate(this.startDate, -this.getCountEmptyDaysAtStart())
+    let date = this._shiftDate(this.startDate, -this.getCountEmptyDaysAtStart() + this.weekstart)
     return Array.from({ length: this.weekCount },
       () => Array.from({ length: DAYS_IN_WEEK },
         () => {
