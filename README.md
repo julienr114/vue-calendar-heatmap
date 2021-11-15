@@ -133,7 +133,7 @@ Boolean to switch to vertical mode. `false` by default.
 <calendar-heatmap :vertical="true" .../>
 ```
 
-### **round** - `vertical`
+### **round** - `round`
 
 Number to create rounded corners or cirlces in heatmap. `0` by default.
 
