@@ -17,6 +17,12 @@
 		<h4>Some</h4>
 		<calendar-heatmap :values="values" :end-date="endDate" style="max-width: 675px"/>
 		<br>
+		<h4>Some (rounded corners)</h4>
+		<calendar-heatmap :values="values" :end-date="endDate" style="max-width: 675px" :round="2"/>
+		<br>
+		<h4>Some (circles)</h4>
+		<calendar-heatmap :values="values" :end-date="endDate" style="max-width: 675px" :round="5"/>
+		<br>
 		<h4>Locale</h4>
 		<calendar-heatmap :values="values" :end-date="endDate" style="max-width: 675px" :locale="{
 			months: [ 'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez' ],
