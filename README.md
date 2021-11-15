@@ -118,14 +118,28 @@ String representing heatmap's unit of measure. Value is `"contributions"` by def
 
 ### **tooltipFormatter** - `tooltip-formatter`
 A method to have full control about tooltip content.
+
 ```html
+
 <calendar-heatmap :tooltip-formatter="(v) => v.count" .../>
 ```
 
 ### **vertical** - `vertical`
+
 Boolean to switch to vertical mode. `false` by default.
+
 ```html
+
 <calendar-heatmap :vertical="true" .../>
+```
+
+### **round** - `vertical`
+
+Number to create rounded corners or cirlces in heatmap. `0` by default.
+
+```html
+
+<calendar-heatmap :round="2" .../>
 ```
 
 ## License
