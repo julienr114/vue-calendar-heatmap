@@ -38,8 +38,8 @@
 			<rect
 				v-for="(color, index) in rangeColor"
 				:key="index"
-        :rx="round"
-        :ry="round"
+				:rx="round"
+				:ry="round"
 				:style="{ fill: color }"
 				:width="SQUARE_SIZE - SQUARE_BORDER_SIZE"
 				:height="SQUARE_SIZE - SQUARE_BORDER_SIZE"
@@ -63,8 +63,8 @@
 				<template v-for="(day, dayIndex) in week" :key="dayIndex">
 					<rect class="vch__day__square"
 						  v-if="day.date < now"
-              :rx="round"
-              :ry="round"
+						  :rx="round"
+						  :ry="round"
 						  :transform="getDayPosition(dayIndex)"
 						  :width="SQUARE_SIZE - SQUARE_BORDER_SIZE"
 						  :height="SQUARE_SIZE - SQUARE_BORDER_SIZE"
@@ -126,10 +126,10 @@
 				type   : String,
 				default: null
 			},
-      round: {
-        type: Number,
-        default: 0
-      }
+			round           : {
+				type   : Number,
+				default: 0
+			}
 		},
 		emits   : [ 'day-click' ],
 		computed: {
