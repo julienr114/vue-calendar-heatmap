@@ -10,7 +10,7 @@ This is primary a Typescript rewrite of [vue-calendar-heatmap](https://github.co
 
 ![](https://i.imgur.com/ntYYTKX.png)
 
-[![npm](https://img.shields.io/npm/v/vue-maplibre-gl.svg?style=flat-square)](https://www.npmjs.com/package/vue3-calendar-heatmap)
+[![npm](https://img.shields.io/npm/v/vue3-calendar-heatmap.svg?style=flat-square)](https://www.npmjs.com/package/vue3-calendar-heatmap)
 [![TypeScript](https://img.shields.io/badge/-Typescript-informational?style=flat-square)](https://www.typescriptlang.org/)
 [![vue2](https://img.shields.io/badge/vue-3.x-brightgreen.svg?style=flat-square)](https://vuejs.org/)
 
