@@ -89,7 +89,7 @@ Array of 6 strings which represents the colors of the progression.
 
 - Default value is equal to the example.
 ```html
-<calendar-heatmap :range-color="['ebedf0', 'dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" .../>
+<calendar-heatmap :range-color="['#ebedf0', '#dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e']" .../>
 ```
 
 ### **max** - `max`
