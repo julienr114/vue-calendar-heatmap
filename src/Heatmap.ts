@@ -170,7 +170,7 @@ export class Heatmap {
 
 	private keyDayParser(date: Date | string) {
 		const day = this.parseDate(date);
-		return String(day.getFullYear()) + String(day.getMonth()) + String(day.getDate());
+		return String(day.getFullYear()) + String(day.getMonth()).padStart(2, '0') + String(day.getDate()).padStart(2, '0');
 	}
 
 }
