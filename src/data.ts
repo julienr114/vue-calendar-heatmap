@@ -1,4 +1,4 @@
-import { Value } from '@/Heatmap';
+import { Value } from '@/components/Heatmap';
 
 export const data: Value[] = [
 	{
