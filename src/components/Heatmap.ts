@@ -31,11 +31,6 @@ export interface Locale {
 	more: string;
 }
 
-export enum Position {
-	HORIZONTAL = 'horizontal',
-	VERTICAL   = 'vertical'
-}
-
 export type TooltipFormatter = (item: CalendarItem, unit: string) => string;
 
 export class Heatmap {
