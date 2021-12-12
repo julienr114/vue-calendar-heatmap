@@ -20,7 +20,7 @@
 		<br>
 		<h4>None</h4>
 		<calendar-heatmap :values="[]" :end-date="endDate" :style="{'max-width': orientation === 'vertical' ? '145px' :  '675px'}"
-						  :vertical="orientation === 'vertical'"/>
+						  :vertical="orientation === 'vertical'" :no-data-text="false"/>
 		<br>
 		<h4>Some</h4>
 		<calendar-heatmap
