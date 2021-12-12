@@ -35,7 +35,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs --clean-cache"
   },
   "dependencies": {
     "tippy.js": "^6.3.7"
