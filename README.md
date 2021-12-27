@@ -137,7 +137,7 @@ Any number which should be the max color.
 ### **noDataText** - `no-data-text`
 Tooltip text to display on days without data. `null` by default (shows no tooltip at all).
 ``` html
- <calendar-heatmap :no-data-text="no data for this day" ... />
+ <calendar-heatmap no-data-text="no data for this day" ... />
 ```
 
 ### **tooltip** - `tooltip`
