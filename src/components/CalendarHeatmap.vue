@@ -1,5 +1,5 @@
 <template>
-	<div class="vch__container">
+	<div :class="{'vch__container': true, 'dark-mode': darkMode}">
 		<svg class="vch__wrapper" ref="svg" :viewBox="viewbox">
 			<g class="vch__months__labels__wrapper" :transform="monthsLabelWrapperTransform">
 				<text
@@ -37,7 +37,7 @@
 			<g v-if="vertical" class="vch__legend__wrapper" :transform="legendWrapperTransform">
 				<text :x="SQUARE_SIZE * 1.25" y="8">{{ lo.less }}</text>
 				<rect
-					v-for="(color, index) in rangeColor"
+					v-for="(color, index) in curRangeColor"
 					:key="index"
 					:rx="round"
 					:ry="round"
@@ -49,7 +49,7 @@
 				/>
 				<text
 					:x="SQUARE_SIZE * 1.25"
-					:y="SQUARE_SIZE * (rangeColor.length + 2) - SQUARE_BORDER_SIZE"
+					:y="SQUARE_SIZE * (curRangeColor.length + 2) - SQUARE_BORDER_SIZE"
 				>
 					{{ lo.more }}
 				</text>
@@ -69,7 +69,7 @@
 							  :transform="getDayPosition(dayIndex)"
 							  :width="SQUARE_SIZE - SQUARE_BORDER_SIZE"
 							  :height="SQUARE_SIZE - SQUARE_BORDER_SIZE"
-							  :style="{ fill: rangeColor[day.colorIndex] }"
+							  :style="{ fill: curRangeColor[day.colorIndex] }"
 							  :data-tippy-content="tooltipOptions(day)"
 							  @click="$emit('dayClick', day)"
 						/>
@@ -89,7 +89,7 @@
 							<svg v-if="!vertical" class="vch__external-legend-wrapper" :viewBox="legendViewbox" :height="SQUARE_SIZE - SQUARE_BORDER_SIZE">
 								<g class="vch__legend__wrapper">
 									<rect
-										v-for="(color, index) in rangeColor"
+										v-for="(color, index) in curRangeColor"
 										:key="index"
 										:rx="round"
 										:ry="round"
@@ -110,13 +110,11 @@
 </template>
 
 <script lang="ts">
-	import { defineComponent, nextTick, onBeforeUnmount, onMounted, PropType, ref, toRefs, watch } from 'vue';
+	import { defineComponent, nextTick, onBeforeUnmount, onMounted, PropType, ref, toRef, toRefs, watch } from 'vue';
 	import { CalendarItem, Heatmap, Locale, Month, TooltipFormatter, Value } from '@/components/Heatmap';
 	import tippy, { createSingleton, CreateSingletonInstance, Instance } from 'tippy.js';
 	import 'tippy.js/dist/tippy.css';
 	import 'tippy.js/dist/svg-arrow.css';
-
-	// type Transform<T = string> = Record<Position, T>;
 
 	export default /*#__PURE__*/defineComponent({
 		name : 'CalendarHeatmap',
@@ -128,8 +126,7 @@
 				type: Number
 			},
 			rangeColor      : {
-				type   : Array as PropType<string[]>,
-				default: Heatmap.DEFAULT_RANGE_COLOR
+				type: Array as PropType<string[]>
 			},
 			values          : {
 				type    : Array as PropType<Value[]>,
@@ -160,7 +157,8 @@
 			round           : {
 				type   : Number,
 				default: 0
-			}
+			},
+			darkMode        : Boolean
 		},
 		emits: [ 'dayClick' ],
 		setup(props) {
@@ -184,10 +182,10 @@
 				  daysLabelWrapperTransform   = ref(''),
 				  monthsLabelWrapperTransform = ref(''),
 				  legendWrapperTransform      = ref(''),
-				  lo                          = ref<Locale>({} as any);
+				  lo                          = ref<Locale>({} as any),
+				  rangeColor                  = ref<string[]>(props.rangeColor || (props.darkMode ? Heatmap.DEFAULT_RANGE_COLOR_DARK : Heatmap.DEFAULT_RANGE_COLOR_LIGHT));
 
-			const { values, tooltipUnit, tooltipFormatter, noDataText, max, rangeColor, vertical, locale } = toRefs(props);
-
+			const { values, tooltipUnit, tooltipFormatter, noDataText, max, vertical, locale } = toRefs(props);
 
 			let tippyInstances: Instance[],
 				tippySingleton: CreateSingletonInstance;
@@ -241,6 +239,10 @@
 				return { x: SQUARE_SIZE * month.index, y: SQUARE_SIZE - SQUARE_BORDER_SIZE };
 			}
 
+			watch([ toRef(props, 'rangeColor'), toRef(props, 'darkMode') ], ([ rc, dm ]) => {
+				rangeColor.value = rc || (dm ? Heatmap.DEFAULT_RANGE_COLOR_DARK : Heatmap.DEFAULT_RANGE_COLOR_LIGHT);
+			});
+
 			watch(vertical, v => {
 				if (v) {
 					width.value                       = LEFT_SECTION_WIDTH + (SQUARE_SIZE * Heatmap.DAYS_IN_WEEK) + RIGHT_SECTION_WIDTH;
@@ -263,7 +265,7 @@
 			}, { immediate: true });
 
 			watch(locale, l => (lo.value = l ? { ...Heatmap.DEFAULT_LOCALE, ...l } : Heatmap.DEFAULT_LOCALE), { immediate: true });
-			watch(rangeColor, rc => (legendViewbox.value = `0 0 ${Heatmap.SQUARE_SIZE * (rc!.length + 1)} ${Heatmap.SQUARE_SIZE}`), { immediate: true });
+			watch(rangeColor, rc => (legendViewbox.value = `0 0 ${Heatmap.SQUARE_SIZE * (rc.length + 1)} ${Heatmap.SQUARE_SIZE}`), { immediate: true });
 
 			watch(
 				[ values, tooltipUnit, tooltipFormatter, noDataText, max, rangeColor ],
@@ -283,7 +285,7 @@
 			return {
 				SQUARE_BORDER_SIZE, SQUARE_SIZE, LEFT_SECTION_WIDTH, RIGHT_SECTION_WIDTH, TOP_SECTION_HEIGHT, BOTTOM_SECTION_HEIGHT,
 				svg, heatmap, now, width, height, viewbox, daysLabelWrapperTransform, monthsLabelWrapperTransform, yearWrapperTransform, legendWrapperTransform,
-				lo, legendViewbox,
+				lo, legendViewbox, curRangeColor: rangeColor,
 				tooltipOptions, getWeekPosition, getDayPosition, getMonthLabelPosition
 			};
 		}
@@ -332,6 +334,14 @@
 
 		rect.vch__day__square:focus {
 			outline: none;
+		}
+
+		&.dark-mode {
+			text.vch__month__label,
+			text.vch__day__label,
+			.vch__legend__wrapper text {
+				fill: #fff;
+			}
 		}
 	}
 
