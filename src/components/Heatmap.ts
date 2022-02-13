@@ -36,18 +36,24 @@ export type TooltipFormatter = (item: CalendarItem, unit: string) => string;
 export class Heatmap {
 
 	static readonly DEFAULT_RANGE_COLOR_LIGHT = [ '#ebedf0', '#dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e' ];
-	static readonly DEFAULT_RANGE_COLOR_DARK  = [ '#333333', '#dae2ef', '#c0ddf9', '#73b3f3', '#3886e1', '#17459e' ];
-	static readonly DEFAULT_LOCALE: Locale    = {
+	static readonly DEFAULT_RANGE_COLOR_DARK  = [ '#1f1f22', '#1e334a', '#1d466c', '#1d5689', '#1d69ac', '#1B95D1' ];
+	// other color candidates
+	// static readonly DEFAULT_RANGE_COLOR_LIGHT = [ '#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39' ];
+	// static readonly DEFAULT_RANGE_COLOR_DARK  = [ '#161b22', '#0e4429', '#006d32', '#26a641', '#39d353' ];
+	// static readonly DEFAULT_RANGE_COLOR_DARK    = [ '#011526', '#012E40', '#025959', '#02735E', '#038C65' ];
+	// static readonly DEFAULT_RANGE_COLOR_DARK    = [ '#161b22', '#015958', '#008F8C', '#0CABA8', '#0FC2C0' ];
+	// static readonly DEFAULT_RANGE_COLOR_DARK    = [ '#012030', '#13678A', '#45C4B0', '#9AEBA3', '#DAFDBA' ];
+	static readonly DEFAULT_LOCALE: Locale = {
 		months: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
 		days  : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
 		on    : 'on',
 		less  : 'Less',
 		more  : 'More'
 	};
-	static readonly DEFAULT_TOOLTIP_UNIT      = 'contributions';
-	static readonly DAYS_IN_ONE_YEAR          = 365;
-	static readonly DAYS_IN_WEEK              = 7;
-	static readonly SQUARE_SIZE               = 10;
+	static readonly DEFAULT_TOOLTIP_UNIT   = 'contributions';
+	static readonly DAYS_IN_ONE_YEAR       = 365;
+	static readonly DAYS_IN_WEEK           = 7;
+	static readonly SQUARE_SIZE            = 10;
 
 	startDate: Date;
 	endDate: Date;

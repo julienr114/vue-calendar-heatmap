@@ -8,7 +8,7 @@ const isPublish = process.env.IS_PUBLISH === 'yes';
 export default defineUserConfig<DefaultThemeOptions>({
 	lang         : 'en-US',
 	title        : 'Calendar Heatmap',
-	description  : 'Vue 3 Calendar Heatmap',
+	description  : 'Simple Heatmap Component for Vue 3',
 	base         : isPublish ? '/vue3-calendar-heatmap/' : '/',
 	bundler      : '@vuepress/vite',
 	bundlerConfig: {
